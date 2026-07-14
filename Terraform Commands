@@ -1,0 +1,127 @@
+# Terraform Commands (Quick Revision)
+
+## Initialization
+
+`terraform init`
+- Initialize project
+- Download providers/modules
+- Configure backend
+
+`terraform init -reconfigure`
+- Reconfigure backend after changing S3/DynamoDB/backend settings
+
+---
+
+## Validation
+
+`terraform fmt`
+- Format Terraform code
+
+`terraform validate`
+- Validate Terraform syntax
+
+---
+
+## Planning & Deployment
+
+`terraform plan`
+- Preview infrastructure changes
+
+`terraform apply`
+- Create or update infrastructure
+
+`terraform destroy`
+- Delete infrastructure
+
+---
+
+## Output
+
+`terraform output`
+- Display output values
+
+---
+
+## State
+
+`terraform state list`
+- List all managed resources
+
+`terraform state show RESOURCE_NAME`
+- Show resource details
+
+Example:
+
+`terraform state show aws_instance.web`
+
+`terraform state rm RESOURCE_NAME`
+- Remove resource from Terraform state (doesn't delete in AWS)
+
+---
+
+## Workspaces
+
+`terraform workspace list`
+- List all workspaces
+
+`terraform workspace new dev`
+- Create a workspace
+
+`terraform workspace select dev`
+- Switch workspace
+
+`terraform workspace show`
+- Show current workspace
+
+`terraform workspace delete dev`
+- Delete workspace
+
+---
+
+## Locking
+
+`terraform force-unlock LOCK_ID`
+- Remove stale DynamoDB state lock
+
+---
+
+## Import
+
+`terraform import RESOURCE_NAME RESOURCE_ID`
+
+Example:
+
+`terraform import aws_instance.web i-0123456789abcdef0`
+
+- Import existing AWS resource into Terraform
+
+---
+
+## Useful Commands
+
+`terraform version`
+- Show Terraform version
+
+`terraform show`
+- Show Terraform state
+
+`terraform graph`
+- Generate resource dependency graph
+
+---
+
+# Daily Workflow
+
+```
+terraform fmt
+        ↓
+terraform validate
+        ↓
+terraform init
+        ↓
+terraform plan
+        ↓
+terraform apply
+        ↓
+terraform output
+```
