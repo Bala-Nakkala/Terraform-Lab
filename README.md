@@ -273,6 +273,81 @@ DynamoDB
 - Stores State Lock
 ---
 
+## Terraform State File Recovery
+
+### Scenario 1 - Local State File Deleted
+
+```
+terraform.tfstate ❌ Deleted
+```
+
+Recovery:
+
+- Restore `terraform.tfstate.backup` (if available).
+- If no backup exists, use `terraform import` to rebuild the state.
+
+---
+
+### Scenario 2 - Remote Backend (S3)
+
+```
+S3
+│
+└── terraform.tfstate
+```
+
+If the local state file is deleted:
+
+- Run `terraform init`
+- Terraform downloads the latest state from the S3 backend.
+
+---
+
+### Scenario 3 - S3 State File Deleted
+
+Recovery:
+
+- Restore the previous version (S3 Versioning enabled).
+- If no backup exists, use `terraform import`.
+
+---
+
+## Terraform Import
+
+### What is Import?
+
+`terraform import` is used to bring an **existing AWS resource** under Terraform management.
+
+- ✅ Does NOT create a resource.
+- ✅ Does NOT modify a resource.
+- ✅ Adds the resource to the Terraform State.
+
+Syntax:
+
+```
+terraform import RESOURCE_NAME RESOURCE_ID
+```
+
+Example:
+
+```
+terraform import aws_instance.web i-08018d17378d175ed
+```
+
+---
+
+### When do we use Import?
+
+- Existing AWS resources created manually.
+- Terraform State file is lost.
+- Migrating existing infrastructure to Terraform.
+
+---
+
+### Interview One-Liner
+
+> `terraform import` is used to import an existing cloud resource into the Terraform State. It does not create or modify the resource.
+
 # Easy Interview One-Liners
 
 **Root Module**
