@@ -384,6 +384,9 @@ terraform import aws_instance.web i-08018d17378d175ed
 > Prevents multiple users from updating the State File simultaneously.
 
 Complete Terraform Project Structure
+
+
+
 terraform-aws-infrastructure/
 │
 ├── README.md
