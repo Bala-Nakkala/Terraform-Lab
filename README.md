@@ -382,3 +382,54 @@ terraform import aws_instance.web i-08018d17378d175ed
 
 **DynamoDB**
 > Prevents multiple users from updating the State File simultaneously.
+
+Complete Terraform Project Structure
+terraform-aws-infrastructure/
+│
+├── README.md
+├── .gitignore
+├── provider.tf
+├── versions.tf
+├── backend.tf
+├── variables.tf
+├── terraform.tfvars
+├── outputs.tf
+├── main.tf
+│
+├── modules/
+│   │
+│   ├── vpc/
+│   │     ├── main.tf
+│   │     ├── variables.tf
+│   │     ├── outputs.tf
+│   │     └── README.md
+│   │
+│   ├── security-group/
+│   │     ├── main.tf
+│   │     ├── variables.tf
+│   │     ├── outputs.tf
+│   │     └── README.md
+│   │
+│   ├── ec2/
+│   │     ├── main.tf
+│   │     ├── variables.tf
+│   │     ├── outputs.tf
+│   │     └── README.md
+│   │
+│   ├── iam/
+│   │     ├── main.tf
+│   │     ├── variables.tf
+│   │     ├── outputs.tf
+│   │     └── README.md
+│   │
+│   └── s3/
+│         ├── main.tf
+│         ├── variables.tf
+│         ├── outputs.tf
+│         └── README.md
+│
+├── diagrams/
+│     ├── architecture.png
+│     └── workflow.png
+│
+└── interview-notes.md
